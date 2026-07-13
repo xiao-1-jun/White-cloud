@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网站部署流程图</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .mermaid {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        .stage {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            border-radius: 0 8px 8px 0;
+        }
+        .stage h3 {
+            margin: 0 0 10px 0;
+            color: #1e40af;
+        }
+        .stage ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 14px;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌐 个人网站部署流程图</h1>
+        <p class="subtitle">从创建文件到上线公网的完整流程</p>
+
+        <div class="mermaid">
+            graph TD
+                subgraph A["阶段一：创建基础文件"]
+                    A1["创建 learning_basics.py"]
+                    A2["创建 index.html"]
+                    A1 --> A2
+                end
+
+                subgraph B["阶段二：配置 Git 环境"]
+                    B1["git config --global user.name"]
+                    B2["git config --global user.email"]
+                    B3["git init"]
+                    B4["git add ."]
+                    B5["git commit -m 'initial'"]
+                    B1 --> B2 --> B3 --> B4 --> B5
+                end
+
+                subgraph C["阶段三：创建 GitHub 仓库"]
+                    C1["创建仓库：仓库名 '-'"]
+                    C2["❌ 问题：URL解析错误"]
+                    C3["修改仓库名：White-cloud"]
+                    C1 --> C2 --> C3
+                end
+
+                subgraph D["阶段四：生成 GitHub 令牌"]
+                    D1["生成 Fine-grained Token"]
+                    D2["❌ 问题：权限不足"]
+                    D3["生成 Classic Token"]
+                    D4["❌ 问题：权限范围不完整"]
+                    D5["生成完整权限 Token"]
+                    D1 --> D2 --> D3 --> D4 --> D5
+                end
+
+                subgraph E["阶段五：推送代码"]
+                    E1["git remote set-url origin"]
+                    E2["git pull origin main"]
+                    E3["git add ."]
+                    E4["git commit"]
+                    E5["git push"]
+                    E6["❌ 问题：安全扫描拦截"]
+                    E7["移除代码中的令牌"]
+                    E8["git commit --amend"]
+                    E9["git push --force"]
+                    E1 --> E2 --> E3 --> E4 --> E5 --> E6 --> E7 --> E8 --> E9
+                end
+
+                subgraph F["阶段六：部署网站"]
+                    F1["启用 GitHub Pages"]
+                    F2["选择 main 分支 /root 目录"]
+                    F3["✅ 网站上线"]
+                    F1 --> F2 --> F3
+                end
+
+                A --> B --> C --> D --> E --> F
+
+                style A fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+                style B fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
+                style C fill:#fce7f3,stroke:#ec4899,stroke-width:2px
+                style D fill:#dcfce7,stroke:#22c55e,stroke-width:2px
+                style E fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px
+                style F fill:#f0fdf4,stroke:#10b981,stroke-width:2px
+                style C2 fill:#fee2e2,stroke:#ef4444
+                style D2 fill:#fee2e2,stroke:#ef4444
+                style D4 fill:#fee2e2,stroke:#ef4444
+                style E6 fill:#fee2e2,stroke:#ef4444
+                style F3 fill:#dcfce7,stroke:#22c55e
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background:#fef3c7;"></div>
+                <span>创建基础文件</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background:#dbeafe;"></div>
+                <span>配置 Git 环境</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background:#fce7f3;"></div>
+                <span>创建 GitHub 仓库</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background:#dcfce7;"></div>
+                <span>生成 GitHub 令牌</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background:#ede9fe;"></div>
+                <span>推送代码到 GitHub</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background:#f0fdf4;"></div>
+                <span>部署网站上线</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background:#fee2e2;"></div>
+                <span>遇到的问题</span>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <h2 style="color: #333; font-size: 20px; margin-bottom: 15px;">📊 流程步骤详解</h2>
+            
+            <div class="stage">
+                <h3>🎯 阶段一：创建基础文件</h3>
+                <ul>
+                    <li>创建 Python 学习文件（learning_basics.py）</li>
+                    <li>创建个人网页（index.html）</li>
+                </ul>
+            </div>
+
+            <div class="stage">
+                <h3>⚙️ 阶段二：配置 Git 环境</h3>
+                <ul>
+                    <li>配置 Git 用户名和邮箱</li>
+                    <li>初始化本地仓库（git init）</li>
+                    <li>添加并提交文件（git add → git commit）</li>
+                </ul>
+            </div>
+
+            <div class="stage">
+                <h3>🏠 阶段三：创建 GitHub 仓库</h3>
+                <ul>
+                    <li>第一次创建仓库名 "-" 失败（URL 解析问题）</li>
+                    <li>修改仓库名为 "White-cloud"</li>
+                </ul>
+            </div>
+
+            <div class="stage">
+                <h3>🔑 阶段四：生成 GitHub 令牌</h3>
+                <ul>
+                    <li>Fine-grained Token 权限不足</li>
+                    <li>Classic Token 权限不完整</li>
+                    <li>最终生成完整权限的 Classic Token</li>
+                </ul>
+            </div>
+
+            <div class="stage">
+                <h3>🚀 阶段五：推送代码</h3>
+                <ul>
+                    <li>配置远程仓库地址</li>
+                    <li>拉取远程内容（git pull）</li>
+                    <li>提交并推送（git push）</li>
+                    <li>安全扫描拦截，移除令牌后重新推送</li>
+                </ul>
+            </div>
+
+            <div class="stage">
+                <h3>🌐 阶段六：部署网站</h3>
+                <ul>
+                    <li>启用 GitHub Pages</li>
+                    <li>配置 main 分支和 /root 目录</li>
+                    <li>网站上线：https://xiao-1-jun.github.io/White-cloud/</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                htmlLabels: true,
+                curve: 'linear'
+            },
+            themeVariables: {
+                primaryColor: '#667eea',
+                primaryTextColor: '#fff',
+                primaryBorderColor: '#667eea',
+                lineColor: '#b8c5d6',
+                secondaryColor: '#f8fafc',
+                tertiaryColor: '#e2e8f0'
+            }
+        });
+    </script>
+</body>
+</html>

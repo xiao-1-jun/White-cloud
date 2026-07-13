@@ -3,137 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的第一个网页</title>
-    <style>
-        body {
-            font-family: 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-        }
-        .card {
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 28px;
-        }
-        .subtitle {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin: 0 auto 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 48px;
-        }
-        .info {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-        .info-item {
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        .info-item:last-child {
-            border-bottom: none;
-        }
-        .info-label {
-            color: #888;
-            font-size: 12px;
-            margin-bottom: 2px;
-        }
-        .info-value {
-            color: #333;
-            font-size: 16px;
-            font-weight: 500;
-        }
-        .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin-top: 10px;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-        .btn:active {
-            transform: translateY(0);
-        }
-        #greeting {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f5f5f5;
-            border-radius: 8px;
-            display: none;
-        }
-        #greeting.show {
-            display: block;
-        }
-    </style>
+    <title>视频列表网站</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="card">
-        <div class="profile-img">👋</div>
-        <h1>你好，我是肖俊杰</h1>
-        <p class="subtitle">欢迎来到我的个人网页</p>
-        
-        <div class="info">
-            <div class="info-item">
-                <div class="info-label">姓名</div>
-                <div class="info-value">肖俊杰</div>
-            </div>
-            <div class="info-item">
-                <div class="info-label">职业</div>
-                <div class="info-value">Python 学习者</div>
-            </div>
-            <div class="info-item">
-                <div class="info-label">技能</div>
-                <div class="info-value">Python, HTML, CSS</div>
-            </div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">🎬 视频中心</h1>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#videos">视频列表</a></li>
+                <li><a href="#about">关于</a></li>
+            </ul>
         </div>
-        
-        <button class="btn" onclick="sayHello()">点击打招呼</button>
-        <div id="greeting"></div>
+    </nav>
+
+    <main id="home">
+        <section class="hero">
+            <h2>探索精彩视频</h2>
+            <p>滚动浏览，发现更多精彩内容</p>
+        </section>
+
+        <section id="videos" class="video-section">
+            <h2 class="section-title">📺 视频列表</h2>
+            <div class="video-grid" id="videoGrid">
+            </div>
+        </section>
+    </main>
+
+    <div class="video-modal" id="videoModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeBtn">&times;</button>
+            <video id="modalVideo" controls autoplay></video>
+            <h3 id="modalTitle"></h3>
+            <p id="modalDesc"></p>
+        </div>
     </div>
 
-    <script>
-        function sayHello() {
-            const greeting = document.getElementById('greeting');
-            const messages = [
-                '你好！很高兴见到你！😊',
-                'Hello! Nice to meet you! 🌟',
-                '嗨！一起学习吧！💪',
-                'Bonjour! 学习快乐！🎉'
-            ];
-            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-            greeting.textContent = randomMsg;
-            greeting.classList.add('show');
-        }
-    </script>
+    <footer id="about">
+        <p>&copy; 2026 视频中心 | 学习项目</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
