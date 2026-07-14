@@ -1,7 +1,7 @@
 {
   "name": "douyin-video-player",
   "version": "1.0.0",
-  "description": "类抖音网页端刷视频功能",
+  "description": "网页端刷视频功能",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
